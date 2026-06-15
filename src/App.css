@@ -1,0 +1,725 @@
+/* MediFlow Design System - Hoja de Estilo Principal */
+
+:root {
+  --mediflow-primary: #1066e4;
+  --mediflow-primary-hover: #0c4eb0;
+  --mediflow-primary-light: #e6f0ff;
+  --mediflow-bg: #f8fafc;
+  --mediflow-card-bg: #ffffff;
+  --mediflow-text: #334155;
+  --mediflow-text-muted: #64748b;
+  --mediflow-text-light: #94a3b8;
+  --mediflow-title: #0f172a;
+  --mediflow-border: #e2e8f0;
+  --mediflow-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --mediflow-shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --mediflow-border-radius: 12px;
+  
+  /* Estados de salud */
+  --status-normal: #10b981;
+  --status-normal-bg: #ecfdf5;
+  --status-high: #ef4444;
+  --status-high-bg: #fef2f2;
+  --status-warning: #f59e0b;
+  --status-warning-bg: #fffbeb;
+  
+  /* Fuentes */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--mediflow-bg);
+  color: var(--mediflow-text);
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.app-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+/* 1. Portal Header */
+.portal-header {
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--mediflow-border);
+  padding-bottom: 20px;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  font-size: 2rem;
+  color: var(--mediflow-primary);
+  animation: heart-beat 1.5s infinite ease-in-out;
+}
+
+.portal-header h1 {
+  font-size: 1.8rem;
+  color: var(--mediflow-title);
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.header-subtitle {
+  color: var(--mediflow-text-muted);
+  margin: 4px 0 0 0;
+  font-size: 1rem;
+}
+
+/* 2. Grid Layout */
+.portal-grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .portal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 3. Cards & Sections */
+.card-premium {
+  background-color: var(--mediflow-card-bg);
+  border: 1px solid var(--mediflow-border);
+  border-radius: var(--mediflow-border-radius);
+  box-shadow: var(--mediflow-shadow);
+  padding: 24px;
+  margin-bottom: 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-premium:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--mediflow-shadow-hover);
+}
+
+.section-title {
+  font-size: 1.25rem;
+  color: var(--mediflow-title);
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--mediflow-primary-light);
+}
+
+/* 4. Perfil del Paciente */
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--mediflow-primary) 0%, #3b82f6 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgb(16 102 228 / 0.3);
+}
+
+.profile-name {
+  font-size: 1.2rem;
+  color: var(--mediflow-title);
+  margin: 0;
+  font-weight: 700;
+}
+
+.profile-id {
+  font-size: 0.85rem;
+  color: var(--mediflow-text-muted);
+  background-color: var(--mediflow-primary-light);
+  padding: 2px 8px;
+  border-radius: 12px;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.info-list {
+  width: 100%;
+  text-align: left;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed var(--mediflow-border);
+  padding-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  color: var(--mediflow-text-muted);
+  font-weight: 500;
+}
+
+.info-value {
+  color: var(--mediflow-title);
+  font-weight: 600;
+}
+
+.previsión-badge {
+  color: var(--mediflow-primary);
+  background-color: var(--mediflow-primary-light);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+/* 5. Consentimientos y Switches */
+.consents-description {
+  color: var(--mediflow-text-muted);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.consent-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.consent-control-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--mediflow-bg);
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--mediflow-border);
+}
+
+.consent-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.consent-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--mediflow-title);
+}
+
+.consent-help {
+  font-size: 0.75rem;
+  color: var(--mediflow-text-muted);
+}
+
+/* Switch Toggle (CSS Puro) */
+.switch-toggle {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.switch-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider-round {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e1;
+  transition: .3s;
+  border-radius: 34px;
+}
+
+.slider-round:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+input:checked + .slider-round {
+  background-color: var(--status-normal);
+}
+
+input:focus + .slider-round {
+  box-shadow: 0 0 1px var(--status-normal);
+}
+
+input:checked + .slider-round:before {
+  transform: translateX(24px);
+}
+
+/* 6. Historial Clínico Consolidado */
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.history-header .section-title {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.record-count {
+  font-size: 0.85rem;
+  color: var(--mediflow-text-muted);
+  background-color: var(--mediflow-bg);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--mediflow-border);
+  font-weight: 500;
+}
+
+.clinical-records-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 7. Clinical Record Component (Compound Component) */
+.clinical-record-card {
+  border: 1px solid var(--mediflow-border);
+  border-radius: var(--mediflow-border-radius);
+  background-color: var(--mediflow-card-bg);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.clinical-record-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.clinical-record-header {
+  padding: 18px 20px;
+  background-color: #fafbfc;
+  border-bottom: 1px solid var(--mediflow-border);
+}
+
+.header-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.record-date {
+  font-size: 0.85rem;
+  color: var(--mediflow-text-muted);
+  font-weight: 500;
+}
+
+.record-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-laboratorio {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+.badge-consulta {
+  background-color: #f5f3ff;
+  color: #6d28d9;
+}
+
+.badge-receta {
+  background-color: #ecfdf5;
+  color: #047857;
+}
+
+.badge-defecto {
+  background-color: var(--mediflow-bg);
+  color: var(--mediflow-text-muted);
+}
+
+.record-title {
+  font-size: 1.15rem;
+  color: var(--mediflow-title);
+  margin: 0 0 6px 0;
+  font-weight: 750;
+}
+
+.record-institution {
+  font-size: 0.85rem;
+  color: var(--mediflow-text-muted);
+}
+
+.clinical-record-body {
+  padding: 20px;
+}
+
+.record-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-item {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.detail-item strong {
+  color: var(--mediflow-title);
+}
+
+/* Tablas de Resultados de Laboratorio */
+.lab-results-table-container {
+  overflow-x: auto;
+}
+
+.lab-results-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.lab-results-table th {
+  padding: 10px 12px;
+  color: var(--mediflow-text-muted);
+  font-weight: 600;
+  border-bottom: 2px solid var(--mediflow-border);
+  background-color: #f8fafc;
+}
+
+.lab-results-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--mediflow-border);
+}
+
+.lab-results-table tr:last-child td {
+  border-bottom: none;
+}
+
+.row-critical {
+  background-color: #fffafb;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.param-name {
+  color: var(--mediflow-title);
+  font-weight: 500;
+}
+
+.param-unit {
+  font-size: 0.8rem;
+  color: var(--mediflow-text-muted);
+  font-weight: normal;
+}
+
+.status-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  display: inline-block;
+  text-align: center;
+}
+
+.status-normal {
+  background-color: var(--status-normal-bg);
+  color: var(--status-normal);
+}
+
+.status-high {
+  background-color: var(--status-high-bg);
+  color: var(--status-high);
+}
+
+.clinical-record-footer {
+  padding: 14px 20px;
+  background-color: #fafbfc;
+  border-top: 1px solid var(--mediflow-border);
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-specialist {
+  color: var(--mediflow-title);
+  font-weight: 500;
+}
+
+.footer-notes {
+  color: var(--mediflow-text-muted);
+  font-style: italic;
+  background-color: #f1f5f9;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border-left: 3px solid var(--mediflow-primary);
+  margin-top: 4px;
+}
+
+/* 8. Estado Bloqueado por Consentimiento */
+.consent-blocked-alert {
+  background-color: var(--status-warning-bg);
+  border: 1px solid #fde68a;
+  border-radius: var(--mediflow-border-radius);
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.alert-icon {
+  font-size: 1.5rem;
+}
+
+.alert-content h3 {
+  margin: 0 0 6px 0;
+  color: #92400e;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.alert-content p {
+  margin: 0;
+  color: #b45309;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.record-card-blocked {
+  border: 1px dashed #cbd5e1;
+  background-color: #f8fafc;
+  opacity: 0.8;
+}
+
+.badge-laboratorio-blocked {
+  background-color: #e2e8f0;
+  color: var(--mediflow-text-muted);
+}
+
+.blocked-header {
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed var(--mediflow-border);
+}
+
+.blocked-body {
+  padding: 16px 20px;
+  font-size: 0.85rem;
+  color: var(--mediflow-text-muted);
+}
+
+.no-records-text {
+  text-align: center;
+  color: var(--mediflow-text-muted);
+  padding: 40px;
+  font-style: italic;
+}
+
+/* 9. Estados de Carga y Skeletons */
+.patient-portal-loading-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  position: relative;
+}
+
+.skeleton-header {
+  height: 80px;
+  margin-bottom: 32px;
+}
+
+.skeleton-logo {
+  width: 100px;
+  height: 24px;
+  background-color: #e2e8f0;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+.skeleton-line-title {
+  width: 250px;
+  height: 28px;
+  background-color: #e2e8f0;
+  border-radius: 4px;
+}
+
+.skeleton-line-subtitle {
+  width: 400px;
+  height: 16px;
+  background-color: #e2e8f0;
+  margin-top: 8px;
+  border-radius: 4px;
+}
+
+.skeleton-card {
+  height: 250px;
+  background-color: #e2e8f0;
+  border-radius: var(--mediflow-border-radius);
+  margin-bottom: 24px;
+  animation: pulse-loading 1.5s infinite ease-in-out;
+}
+
+.main-skeleton {
+  height: 600px;
+}
+
+.loading-spinner-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.mediflow-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--mediflow-primary-light);
+  border-top: 4px solid var(--mediflow-primary);
+  border-radius: 50%;
+  animation: spin 1s infinite linear;
+}
+
+.loading-text {
+  margin-top: 16px;
+  color: var(--mediflow-primary);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+/* 10. Vista de Error */
+.patient-portal-error-container {
+  max-width: 600px;
+  margin: 100px auto 0;
+  padding: 0 16px;
+}
+
+.error-panel {
+  text-align: center;
+  padding: 40px 32px;
+}
+
+.error-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.error-panel h2 {
+  color: var(--status-high);
+  margin-top: 0;
+  font-weight: 700;
+}
+
+.error-message {
+  font-family: monospace;
+  background-color: #f1f5f9;
+  padding: 12px;
+  border-radius: 6px;
+  color: var(--status-high);
+  border: 1px solid var(--mediflow-border);
+  font-size: 0.9rem;
+}
+
+.error-suggestion {
+  color: var(--mediflow-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.btn-retry {
+  background-color: var(--mediflow-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  box-shadow: 0 4px 6px rgba(16, 102, 228, 0.2);
+}
+
+.btn-retry:hover {
+  background-color: var(--mediflow-primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-retry:active {
+  transform: translateY(1px);
+}
+
+/* Animaciones */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse-loading {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+@keyframes heart-beat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
