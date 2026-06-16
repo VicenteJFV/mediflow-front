@@ -4,8 +4,38 @@ import { usePatientHistory } from '../hooks/usePatientHistory';
 import { PatientHistoryView } from '../components/PatientHistoryView';
 
 export function PatientHistoryContainer() {
-  const { paciente, consentimientos, toggleConsentimiento } = usePatient();
+  const { paciente, consentimientos, toggleConsentimiento, actualizarPaciente } = usePatient();
   const { historial, cargando, error, reintentar } = usePatientHistory(paciente.id);
+
+  const alBuscarPaciente = async (nuevoId) => {
+    try {
+      const response = await fetch(`/api/paciente/${nuevoId}/demographics`);
+      if (response.ok) {
+        const data = await response.json();
+        actualizarPaciente(data);
+      } else {
+        // Fallback in case of server response error
+        actualizarPaciente({
+          id: nuevoId,
+          nombre: `Paciente Demo ${nuevoId}`,
+          rut: "N/A",
+          fechaNacimiento: "N/A",
+          email: "N/A",
+          telefono: "N/A"
+        });
+      }
+    } catch (e) {
+      console.error("Error fetching patient demographics:", e);
+      actualizarPaciente({
+        id: nuevoId,
+        nombre: `Paciente Demo ${nuevoId}`,
+        rut: "N/A",
+        fechaNacimiento: "N/A",
+        email: "N/A",
+        telefono: "N/A"
+      });
+    }
+  };
 
   // 1. Renderizar estado de carga (Alineado con diseño premium)
   if (cargando) {
@@ -65,6 +95,7 @@ export function PatientHistoryContainer() {
       consentimientos={consentimientos}
       alToggleConsentimiento={toggleConsentimiento}
       historial={historial}
+      alBuscarPaciente={alBuscarPaciente}
     />
   );
 }

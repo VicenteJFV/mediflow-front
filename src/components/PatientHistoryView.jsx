@@ -1,14 +1,65 @@
 import React from 'react';
 import { ClinicalRecord } from './ClinicalRecord';
 
-export function PatientHistoryView({ paciente, consentimientos, alToggleConsentimiento, historial }) {
+export function PatientHistoryView({ paciente, consentimientos, alToggleConsentimiento, historial, alBuscarPaciente }) {
+  const [buscarId, setBuscarId] = React.useState(paciente.id);
+
+  React.useEffect(() => {
+    setBuscarId(paciente.id);
+  }, [paciente.id]);
+
   return (
     <div className="patient-portal-view">
       {/* Encabezado del Portal del Paciente */}
       <header className="portal-header">
-        <div className="header-brand">
-          <span className="brand-logo">✙</span>
-          <h1>MediFlow Portal del Paciente</h1>
+        <div className="header-main-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '15px' }}>
+          <div className="header-brand">
+            <span className="brand-logo">✙</span>
+            <h1>MediFlow Portal del Paciente</h1>
+          </div>
+          <div className="patient-search-bar">
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              if (buscarId.trim() && alBuscarPaciente) {
+                alBuscarPaciente(buscarId.trim());
+              }
+            }} style={{ display: 'flex', gap: '8px' }}>
+              <input
+                type="text"
+                value={buscarId}
+                onChange={(e) => setBuscarId(e.target.value)}
+                placeholder="ID de Paciente (ej: MF-2)..."
+                style={{
+                  padding: '8px 12px',
+                  borderRadius: '6px',
+                  border: '1px solid #ddd',
+                  background: '#f9f9f9',
+                  color: '#333',
+                  fontSize: '14px',
+                  outline: 'none',
+                  minWidth: '200px'
+                }}
+              />
+              <button
+                type="submit"
+                style={{
+                  padding: '8px 16px',
+                  borderRadius: '6px',
+                  border: 'none',
+                  background: '#2563eb',
+                  color: '#fff',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  transition: 'background 0.2s'
+                }}
+                onMouseOver={(e) => e.target.style.background = '#1d4ed8'}
+                onMouseOut={(e) => e.target.style.background = '#2563eb'}
+              >
+                Buscar
+              </button>
+            </form>
+          </div>
         </div>
         <p className="header-subtitle">Plataforma Unificada de Interoperabilidad de Salud Digital</p>
       </header>
